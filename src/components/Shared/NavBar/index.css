@@ -1,0 +1,33 @@
+#menu-toggle:checked + #menu {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+@media (max-width: 1023px) {
+    nav {
+        height: 64px;
+    }
+
+    #menu-toggle + #menu {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.5s linear;
+    }
+}
+
+@media (min-width: 768px) {
+    .underline-links a::before {
+        width: 0;
+        bottom: 5px;
+        transition: 300ms;
+        height: 2px;
+        content: "";
+        position: absolute;
+        background-color: #fff;
+    }
+
+    .underline-links a:hover::before {
+        width: 100%;
+    }
+}

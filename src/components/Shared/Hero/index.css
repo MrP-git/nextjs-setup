@@ -1,0 +1,18 @@
+.hero.bg-image {
+    text-align: center;
+    line-height: calc(100vh - 100px);
+    height: calc(100vh - 100px);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero span {
+    color: white;
+    font-size: 30px;
+    user-select: none;
+}
+
+.hero-1 {
+    background: url("/hero-1.jpg") repeat 0 0;
+}
