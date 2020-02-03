@@ -43,6 +43,25 @@ module.exports = withBundleAnalyzer(
                     use: 'null-loader',
                   })
                 }
+                const splitChunks = config.optimization && config.optimization.splitChunks
+                if (splitChunks) {
+                  const cacheGroups = splitChunks.cacheGroups;
+                  const preactModules = /[\\/]node_modules[\\/](preact|preact-render-to-string|preact-context-provider)[\\/]/;
+                  if (cacheGroups.framework) {
+                    cacheGroups.preact = Object.assign({}, cacheGroups.framework, {
+                      test: preactModules
+                    });
+                    cacheGroups.commons.name = 'framework';
+                  }
+                  else {
+                    cacheGroups.preact = {
+                      name: 'commons',
+                      chunks: 'all',
+                      test: preactModules
+                    };
+                  }
+                }
+
                 // config.resolve.alias['@ant-design/icons/lib/dist$'] = path.join(__dirname, 'src/client/icons.js');
                 config.resolve.alias['@ant-design/icons$'] = path.join(__dirname, 'src/client/icons.js');
                 config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),);
